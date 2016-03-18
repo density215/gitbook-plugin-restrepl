@@ -1,0 +1,40 @@
+.restbox {
+    width: 100%;
+}
+
+.restbox .body {
+    height: 350px;
+}
+
+.book .restbox pre {
+    font-size: 0.8em !important;
+    height: 350px;
+    overflow-y: scroll;
+    outline: 1px solid rgba(0,0,0,.07);
+    padding: 5px;
+    margin: 5px;
+}
+
+.string {
+    color: #364149;
+}
+
+.number {
+    color: #008cff;
+}
+
+.boolean {
+    color: #008cff;
+}
+
+.null {
+    color: #008cff;
+}
+
+.key {
+    color: #364149;
+}
+
+.restbox button.tryit::after {
+    content: "Try it!"
+}
