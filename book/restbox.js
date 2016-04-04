@@ -5,7 +5,6 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
 });
 
 function syntaxHighlight(json) {
-    document.getElementsByClassName('restbox')[0].lastChild.innerHTML = 'formatting...';
     json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
         var cls = 'number';
@@ -34,9 +33,8 @@ function initRestBox() {
             expandItButton = thisRestBox.getElementsByClassName('expandit')[0];
 
         tryItButton.addEventListener('click', function (e) {
-            e.preventDefault();
             tryItHandler({
-                requestedUrl: restBoxDivs[div].getElementsByClassName('url')[0].textContent,
+                requestedUrl: thisRestBox.getElementsByClassName('url')[0].textContent,
                 httpMethod: 'GET',
                 restBoxElement: thisRestBox
             })

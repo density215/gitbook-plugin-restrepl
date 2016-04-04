@@ -34,7 +34,7 @@ module.exports = {
                     "<button class='tryit'></button>" +
                     "<button class='hideit'></button>" +
                     "<button class='expandit'></button>" +
-                    "<div class='url'>" + restUrl + "<span contentEditable=true>" + exampleQueryParams + "</span></div>" +
+                    "<div class='url' title='click query parameters to edit'>" + restUrl + "<span contentEditable=true>" + exampleQueryParams + "</span></div>" +
                     "</div>" +
                     "<pre class='body'></pre>" +
                     "</div>";

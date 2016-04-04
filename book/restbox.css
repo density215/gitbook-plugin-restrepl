@@ -45,13 +45,18 @@
 .restbox .url {
     overflow: hidden;
     font-family: roboto mono, monospace;
-    font-size: 1.0em !important;
+    font-size: 0.9em !important;
     background-color: #f7f7f7;
     vertical-align: middle;
     margin-top: 1px;
     margin-left: 16px;
     padding: 7px;
     word-break: break-all;
+}
+
+.restbox .url span {
+    border-bottom: 1px #ff002f dashed;
+    background-color: #fff;
 }
 
 @media (max-width: 768px) {
