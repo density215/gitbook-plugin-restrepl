@@ -10,7 +10,7 @@
     font-size: 0.8em !important;
     height: 350px;
     overflow-y: scroll;
-    outline: 1px solid rgba(0,0,0,.07);
+    outline: 1px solid rgba(0, 0, 0, .07);
     padding: 5px;
     margin: 5px;
 }
@@ -35,6 +35,72 @@
     color: #364149;
 }
 
+.restbox .controlbox {
+    display: inline-block;
+    height: 35px;
+    margin-bottom: 21px;
+    width: 100%;
+}
+
+.restbox .url {
+    overflow: hidden;
+    font-family: roboto mono, monospace;
+    font-size: 1.0em !important;
+    background-color: #f7f7f7;
+    vertical-align: middle;
+    margin-top: 1px;
+    margin-left: 16px;
+    padding: 7px;
+    word-break: break-all;
+}
+
+@media (max-width: 768px) {
+    .restbox .url {
+        margin-top: 43px;
+        margin-left: 0;
+    }
+}
+
+.restbox button {
+    outline: none;
+    padding: 8px 15px;
+    margin-right: 4px;
+    line-height: 20px;
+    vertical-align: middle;
+    border-radius: 0;
+    text-shadow: none;
+    color: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid;
+    float: left;
+}
+
+.restbox button.tryit {
+    background-color: #5bb75b;
+}
+
+.restbox button.expandit {
+    background-color: #44465d;
+    display: none;
+}
+
+.restbox button.hideit {
+    background-color: #ffbb00;
+    display: none;
+}
+
+.restbox button.expandit::after {
+    content: "Expand";
+}
+
+.restbox button.hideit::after {
+    content: "Hide";
+}
+
 .restbox button.tryit::after {
-    content: "Try it!"
+    content: "Try it!";
+}
+
+.restbox .body {
+    display: none;
 }

@@ -30,7 +30,12 @@ module.exports = {
                 var restUrl = block.kwargs.url;
                 var exampleQueryParams = block.kwargs.queryParams;
                 return "<div class='restbox'>" +
-                    "<button class='tryit'></button><div class='url'>" + restUrl + "<span contentEditable=true>" + exampleQueryParams + "</span></div>" +
+                    "<div class='controlbox'>" +
+                    "<button class='tryit'></button>" +
+                    "<button class='hideit'></button>" +
+                    "<button class='expandit'></button>" +
+                    "<div class='url'>" + restUrl + "<span contentEditable=true>" + exampleQueryParams + "</span></div>" +
+                    "</div>" +
                     "<pre class='body'></pre>" +
                     "</div>";
             }

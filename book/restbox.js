@@ -29,13 +29,30 @@ function initRestBox() {
 
     Object.keys(restBoxDivs).forEach(function (div) {
         var thisRestBox = restBoxDivs[div],
-            tryItButton = thisRestBox.getElementsByClassName('tryit')[0];
-        tryItButton.addEventListener('click', function () {
+            tryItButton = thisRestBox.getElementsByClassName('tryit')[0],
+            hideItButton = thisRestBox.getElementsByClassName('hideit')[0],
+            expandItButton = thisRestBox.getElementsByClassName('expandit')[0];
+
+        tryItButton.addEventListener('click', function (e) {
+            e.preventDefault();
             tryItHandler({
                 requestedUrl: restBoxDivs[div].getElementsByClassName('url')[0].textContent,
-                httpMethod: 'GET'
+                httpMethod: 'GET',
+                restBoxElement: thisRestBox
             })
         }, false);
+
+        hideItButton.addEventListener('click', function() {
+            thisRestBox.getElementsByClassName('body')[0].style.display = '';
+            hideItButton.style.display = '';
+            expandItButton.style.display = '';
+            thisRestBox.getElementsByClassName('body')[0].style.height = '';
+        }, false);
+
+        expandItButton.addEventListener('click', function() {
+            thisRestBox.getElementsByClassName('body')[0].style.height = '100%';
+            expandItButton.style.display = '';
+        }, false)
     });
 }
 
@@ -43,8 +60,13 @@ function tryItHandler(spec) {
     var requestedUrl = spec.requestedUrl,
         httpMethod = spec.httpMethod || 'GET',
         payload = spec.payload || null,
-        bodyDiv = document.getElementsByClassName('restbox')[0].lastChild,
+        restbox = spec.restBoxElement,
+        bodyDiv = spec.restBoxElement.getElementsByClassName('body')[0],
         timer;
+    bodyDiv.style.height = '';
+    bodyDiv.style.display = 'block';
+    restbox.getElementsByTagName('button')[1].style.display = 'inline-block';
+    restbox.getElementsByTagName('button')[2].style.display = 'inline-block';
     bodyDiv.innerHTML = 'waiting for response';
     $.ajax({
         url: requestedUrl,
@@ -57,7 +79,7 @@ function tryItHandler(spec) {
         function (jsonResponse) {
             window.clearInterval(timer);
             bodyDiv.innerHTML = 'All loaded, formatting...';
-            document.getElementsByClassName('restbox')[0].lastChild.innerHTML =
+            bodyDiv.innerHTML =
                 syntaxHighlight(JSON.stringify(jsonResponse, undefined, 2));
         },
         function (error) {
@@ -75,7 +97,7 @@ function tryItHandler(spec) {
                 errorResponse = 'The server responded: "' + errorResponse + '"';
                 errorCode = (typeof error.responseJSON == 'object' && error.responseJSON.error.status) || error.errorCode || 'unknown';
             }
-            document.getElementsByClassName('restbox')[0].lastChild.innerHTML =
+            bodyDiv.lastChild.innerHTML =
                 "HTTP Error " + errorCode + "\n" + errorResponse;
 
         }
